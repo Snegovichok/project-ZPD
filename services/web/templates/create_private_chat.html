@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Создать приватный чат{% endblock %}
+{% block content %}
+<h1>Создать приватный чат</h1>
+<form action="{{ url_for('create_private_chat') }}" method="post">
+    <label>Придумайте пароль к приватному чату:</label>
+    <input type="password" name="password" required>
+    <button type="submit">Создать</button>
+</form>
+{% if chats %}
+<table border="1">
+    <tr>
+        <th>ID чата</th>
+        <th>Действия</th>
+    </tr>
+    {% for chat in chats %}
+    <tr>
+        <td>{{ chat.chat_id }}</td>
+        <td>
+            <a href="{{ url_for('private_chat', chat_id=chat.chat_id) }}"><button>Открыть</button></a>
+            <form action="{{ url_for('delete_chat', chat_db_id=chat.id) }}" method="post" style="display:inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Список моих чатов пуст</p>
+{% endif %}
+<a href="{{ url_for('account') }}"><button>Назад</button></a>
+{% endblock %}
+

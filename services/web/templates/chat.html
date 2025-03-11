@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Общий чат{% endblock %}
+{% block content %}
+<h1>Общий чат</h1>
+<div id="chat">
+    {% for msg in messages %}
+        <p><strong>{{ msg.user }}:</strong> {{ msg.content }}</p>
+    {% endfor %}
+</div>
+{% if current_user.is_authenticated %}
+<form id="messageForm">
+    <input type="text" id="message" placeholder="Ваше сообщение">
+    <button type="submit">Отправить</button>
+</form>
+{% endif %}
+<script>
+    var socket = io();
+    socket.emit('join', {room: 'general', username: "{{ current_user.username if current_user.is_authenticated else 'Гость' }}"});
+    socket.on('message', function(data) {
+        var chat = document.getElementById('chat');
+        var p = document.createElement('p');
+        p.innerHTML = '<strong>' + data.username + ':</strong> ' + data.message;
+        chat.appendChild(p);
+    });
+    document.getElementById('messageForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var msg = document.getElementById('message').value;
+        socket.emit('send_message', {room: 'general', username: "{{ current_user.username }}", message: msg});
+        document.getElementById('message').value = '';
+    });
+</script>
+{% endblock %}
+

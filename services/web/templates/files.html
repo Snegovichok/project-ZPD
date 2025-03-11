@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Мои файлы{% endblock %}
+{% block content %}
+<h1>Мои файлы</h1>
+<form action="{{ url_for('files') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Загрузить файл</button>
+</form>
+{% if files %}
+<table border="1">
+    <tr>
+        <th>Имя файла</th>
+        <th>Действия</th>
+    </tr>
+    {% for f in files %}
+    <tr>
+        <td>{{ f.filename }}</td>
+        <td>
+            <a href="{{ url_for('download', file_id=f.id) }}"><button>Скачать</button></a>
+            <form action="{{ url_for('delete_file', file_id=f.id) }}" method="post" style="display:inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Список моих файлов пуст</p>
+{% endif %}
+<a href="{{ url_for('account') }}"><button>Назад</button></a>
+{% endblock %}
+

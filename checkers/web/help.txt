@@ -1,0 +1,18 @@
+Как запустить checker.py?
+Примечание: Перед этим проверьте что у Вас запущен Docker (docker-compose up).
+
+[1] Проверка доступности сервиса
+python3 checker.py check 127.0.0.1
+(Если сервис работает, скрипт завершится с sys.exit(0), иначе – с sys.exit(1).)
+
+[2] Сохранение флага
+python3 checker.py put 127.0.0.1 123 "test_flag" 1
+(Отправит JSON { "flag_id": 123, "flag": "test_flag", "vuln": 1 } на http://127.0.0.1:5000/api/flag/put.)
+
+[3] Получение флага
+python3 checker.py get 127.0.0.1 123 "test_flag" 1
+(Запросит флаг 123 с http://127.0.0.1:5000/api/flag/get.)
+
+[4] Получение информации
+python3 checker.py info 127.0.0.1
+(Выведет JSON с параметрами чека.)

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Аккаунт{% endblock %}
+{% block content %}
+<h1>Аккаунт: {{ current_user.username }}</h1>
+<a href="{{ url_for('chat') }}"><button>Общий чат</button></a>
+<a href="{{ url_for('files') }}"><button>Мои файлы</button></a>
+<a href="{{ url_for('create_private_chat') }}"><button>Создать приватный чат</button></a>
+<a href="{{ url_for('join_private_chat') }}"><button>Подключиться к приватному чату</button></a>
+<a href="{{ url_for('logout') }}"><button>Выход</button></a>
+{% endblock %}
+

@@ -1,0 +1,9 @@
+Может помочь решить проблему с запуском:
+
+Старый контейнер может быть поврежден:
+docker-compose down
+docker system prune -a
+docker-compose up --build
+
+Не можешь найти в терминале ссылку на страницу сервиса?
+http://localhost:5000/
