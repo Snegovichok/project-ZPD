@@ -25,7 +25,7 @@ These two websites were created for educational purposes. Works on any Windows/L
 # DESCRIPTION
 **Project ZPD version 1.0:**
 At first, I created the most secure web application as possible according to my knowledge in Python Flask development.
-Then, using the same code, without any changes to the HTML/CSS/JS templates, I modified it to contain several vulnerabilities that I described above. In the codes themselves, you can visually see where the vulnerabilities may be if you write the code very poorly.
+Then, using the same code, without any changes to the HTML/CSS/JS templates, I modified it to contain several vulnerabilities that I described above. In the codes "secure_app.py" and "vulnerable_app.py" themselves, you can visually see where the vulnerabilities may be if you write the code very poorly.
 
 # SETUP AND INSTALLATION INSTRUCTIONS
 ## How to set up or launch a project:
