@@ -31,7 +31,7 @@ Then, using the same code, without any changes to the HTML/CSS/JS templates, I m
 ## How to set up or launch a project:
 1. Install Python software from the official website on your OS (Linux/Windows/macOS) "https://www.python.org".
 2. Download the project-ZPD folder and place it in any convenient location.
-3. Open the "project-ZPD\services\web" directory. And the command line (terminal) itself with this location, which has Python.
+3. Open the "..\project-ZPD\services\web\" directory. And the command line (terminal) itself with this location, which has Python.
 4. Install all necessary pip dependencies from the file requirements.txt:
 - pip install -r requirements.txt
 5. Now you can run the web application while staying in the same directory in the terminal:
@@ -41,7 +41,7 @@ Then, using the same code, without any changes to the HTML/CSS/JS templates, I m
 You should have a link to the server (at http://0.0.0.0:5000). Open it in any browser.
 ## Addition:
 - You can also run "check.py" for checking the health of web applications.
-1. Open the folder with the "project-ZPD/" directory in the new terminal.
+1. Open the folder with the "..\project-ZPD\" directory in the new terminal.
 2. Install all necessary pip dependencies from the file requirements.txt:
 - pip install -r requirements.txt
 3. Now you can check web applications while staying in the same terminal directory:
@@ -49,7 +49,7 @@ You should have a link to the server (at http://0.0.0.0:5000). Open it in any br
 - Note: Before launching, make sure that one of the web applications is running.
 4. To clean the database, use the following command:
 - python clear.py
-- Note: Or manually delete the "instance" and "uploads" folders in the "project-ZPD\services\web" directory.
+- Note: Or manually delete the "instance" and "uploads" folders in the "..\project-ZPD\services\web\" directory.
 
 # IF YOU ARE GOING TO USE DOCKER:
 ## My stack of used technologies:
@@ -71,11 +71,11 @@ You should have a link to the server (at http://0.0.0.0:5000). Open it in any br
 
 ## How to set up or launch a project:
 1. Download and open project-ZPD folder.
-2. Open the "project-ZPD/" directory. And the command line (terminal) itself with this location, which has Python.
+2. Open the "../project-ZPD" directory. And the command line (terminal) itself with this location, which has Python.
 3. Now you can enter the following commands in terminal:
 - **To start the Docker server, simply enter the following command:**
 - sudo python3 run.py
-- Note: To launch secure_app.py edit the "Dockerfile" file in the folder with the "project-ZPD/services/web" directory. To stop the server, use Ctrl + C in the terminal.
+- Note: To launch secure_app.py edit the "Dockerfile" file in the folder with the "../project-ZPD/services/web" directory. To stop the server, use Ctrl + C in the terminal.
 - **To clean the Docker server, simply type the following command:**
 - sudo python3 restart.py
 - **To use the tests, install additional libraries for Python. To do this, run the following command:**
@@ -84,3 +84,4 @@ You should have a link to the server (at http://0.0.0.0:5000). Open it in any br
 - python check.py
 - **To clean the database, use the following command:**
 - python clear.py
+- Note: In case of failure to delete folders "sudo python clear.py".
