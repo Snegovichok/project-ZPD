@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+    
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <!-- CSRF-токен -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <!-- Подключение библиотеки Socket.IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+</head>
+<body>
+
+    <!-- Вывод flash-сообщений -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Основное содержимое страницы -->
+    {% block content %}{% endblock %}
+
+    <!-- Подключение JS (переносим в конец body для повышение безопасности) -->
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/files.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/create_private_chat.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/join_private_chat.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/private_chat.js') }}"></script>
+
+    <!-- CSRF-защита для форм и AJAX -->
+    <script src="{{ url_for('static', filename='js/csrf_protection.js') }}"></script>
+
+</body>
+</html>
+

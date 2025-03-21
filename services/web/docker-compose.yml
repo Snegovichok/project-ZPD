@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build: .
+    restart: always
+    pids_limit: 100
+    mem_limit: 128m
+    cpus: "0.5"
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+

@@ -1,0 +1,9 @@
+Flask
+Flask-Login
+Flask-SocketIO
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Talisman
+Werkzeug
+eventlet
+requests
