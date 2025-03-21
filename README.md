@@ -73,14 +73,14 @@ You should have a link to the server (at http://0.0.0.0:5000). Open it in any br
 1. Download and open project-ZPD folder.
 2. Open the "project-ZPD/" directory. And the command line (terminal) itself with this location, which has Python.
 3. Now you can enter the following commands in terminal:
-**To start the Docker server, simply enter the following command:**
+- **To start the Docker server, simply enter the following command:**
 - sudo python3 run.py
 - Note: To launch secure_app.py edit the "Dockerfile" file in the folder with the "project-ZPD/services/web" directory. To stop the server, use Ctrl + C in the terminal.
-**To clean the Docker server, simply type the following command:**
+- **To clean the Docker server, simply type the following command:**
 - sudo python3 restart.py
-**To use the tests, install additional libraries for Python. To do this, run the following command:**
+- **To use the tests, install additional libraries for Python. To do this, run the following command:**
 - python setup.py
-**To test the functionality of the web application, simply enter the following command:**
+- **To test the functionality of the web application, simply enter the following command:**
 - python check.py
-**To clean the database, use the following command:**
+- **To clean the database, use the following command:**
 - python clear.py
