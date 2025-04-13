@@ -38,7 +38,7 @@ Then, using the same code, without any changes to the HTML/CSS/JS templates, I m
 - "python secure_app.py" or "python vulnerable_app.py"
 - Note: Run only one. To stop the server, use Ctrl + C in the terminal.
 ## Result
-You should have a link to the server (at http://0.0.0.0:5000). Open it in any browser.
+You should have a link to the server (at [http://0.0.0.0:5000] or [http://localhost:5000]). Open it in any browser.
 ## Addition:
 - You can also run "check.py" for checking the health of web applications.
 1. Open the folder with the "..\project-ZPD\" directory in the new terminal.
