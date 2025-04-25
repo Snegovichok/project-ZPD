@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Приватный чат ID: {{ chat_id }}{% endblock %}
+
+{% block content %}
+<h1>Приватный чат ID: {{ chat_id }}</h1>
+
+<div id="chat" data-room="{{ chat_id }}" data-username="{{ current_user.username }}">
+    {% for msg in messages %}
+        <p><strong>{{ msg.user }}:</strong> {{ msg.content }}</p>
+    {% endfor %}
+</div>
+
+<form id="messageForm" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="text" id="message" name="message" placeholder="Ваше сообщение" required>
+    <button type="submit" id="sendBtn">Отправить</button>
+</form>
+
+<a href="{{ url_for('account') }}"><button>Назад</button></a>
+
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Создать приватный чат{% endblock %}
+
+{% block content %}
+<h1>Создать приватный чат</h1>
+
+<form action="{{ url_for('create_private_chat') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label for="password">Придумайте пароль к приватному чату:</label>
+    <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+    <button type="submit">Создать</button>
+</form>
+
+{% if chats %}
+<h2>Мои чаты</h2>
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center;">
+    <tr>
+        <th>ID чата</th>
+        <th>Действия</th>
+    </tr>
+    {% for chat in chats %}
+    <tr>
+        <td>{{ chat.chat_id }}</td>
+        <td>
+            <a href="{{ url_for('private_chat', chat_id=chat.chat_id) }}">
+                <button type="button">Открыть</button>
+            </a>
+            <form action="{{ url_for('delete_chat', chat_db_id=chat.id) }}" method="post" style="display:inline;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот чат?');">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Список моих чатов пуст.</p>
+{% endif %}
+
+<a href="{{ url_for('account') }}"><button type="button">Назад</button></a>
+
+{% endblock %}
+
