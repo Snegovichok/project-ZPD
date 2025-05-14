@@ -9,6 +9,7 @@ import socketio
 import json
 import random
 import string
+import secrets
 
 # Настройки
 REQUEST_TIMEOUT = 5
@@ -34,10 +35,57 @@ def generate_random_username(prefix="checker_user_", length=6):
     suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
     return prefix + suffix
     
-def generate_random_password_username(prefix="", length=20):
-    """Генерация случайного логина с префиксом."""
-    suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
-    return prefix + suffix
+def generate_random_password_username(length=20, use_upper=True, use_lower=True, use_digits=True, use_special_chars=True, min_upper=1, min_lower=1, min_digits=1, min_special=1):
+    """
+    Генерация сложного случайного пароля или логина с заданными требованиями.
+
+    Параметры:
+    1. length (int): Длина пароля.
+    2. use_upper (bool): Использовать заглавные буквы (A-Z).
+    3. use_lower (bool): Использовать строчные буквы (a-z).
+    4. use_digits (bool): Использовать цифры (0-9).
+    5. use_special_chars (bool): Использовать спецсимволы (!@#$%^&*()_+ и т.д.).
+    6. min_upper (int): Минимальное количество заглавных букв.
+    7. min_lower (int): Минимальное количество строчных букв.
+    8. min_digits (int): Минимальное количество цифр.
+    9. min_special (int): Минимальное количество спецсимволов.
+    """
+    if length < (min_upper + min_lower + min_digits + min_special):
+        raise ValueError("Длина пароля слишком мала для заданных ограничений!")
+
+    chars = ""
+    if use_upper:
+        chars += string.ascii_uppercase
+    if use_lower:
+        chars += string.ascii_lowercase
+    if use_digits:
+        chars += string.digits
+    if use_special_chars:
+        chars += "!@#$%^&*()_+-=[]{}|;:,.<>?"
+
+    if not chars:
+        raise ValueError("Не выбрано ни одного типа символов!")
+
+    password = []
+    
+    # Добавляем обязательные символы
+    if use_upper:
+        password.extend(secrets.choice(string.ascii_uppercase) for _ in range(min_upper))
+    if use_lower:
+        password.extend(secrets.choice(string.ascii_lowercase) for _ in range(min_lower))
+    if use_digits:
+        password.extend(secrets.choice(string.digits) for _ in range(min_digits))
+    if use_special_chars:
+        password.extend(secrets.choice("!@#$%^&*()_+-=[]{}|;:,.<>?") for _ in range(min_special))
+
+    # Заполняем оставшиеся символы случайными значениями
+    remaining_length = length - len(password)
+    password.extend(secrets.choice(chars) for _ in range(remaining_length))
+
+    # Перемешиваем символы, чтобы обязательные не шли подряд
+    random.shuffle(password)
+
+    return ''.join(password)
 
 def register(session):
     """Регистрирует пользователя с уникальным логином."""
