@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Общий чат{% endblock %}
+
+{% block content %}
+<h1>Общий чат</h1>
+
+<div id="chat">
+    {% for msg in messages %}
+        <p><strong>{{ msg.user }}:</strong> {{ msg.content }}</p>
+    {% endfor %}
+</div>
+
+{% if current_user.is_authenticated %}
+<!-- Передаем имя пользователя через data-атрибут -->
+<input type="text" id="message" placeholder="Ваше сообщение" required>
+<button id="sendMessageButton">Отправить</button>
+{% else %}
+<p>Вы должны <a href="{{ url_for('index') }}">войти</a>, чтобы отправлять сообщения.</p>
+{% endif %}
+
+{% endblock %}
+

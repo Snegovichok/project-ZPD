@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Аккаунт{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать, {{ current_user.username }}!</h1>
+
+<div class="account-actions">
+    <a href="{{ url_for('chat') }}"><button>Общий чат</button></a>
+    <a href="{{ url_for('files') }}"><button>Мои файлы</button></a>
+    <a href="{{ url_for('create_private_chat') }}"><button>Создать приватный чат</button></a>
+    <a href="{{ url_for('join_private_chat') }}"><button>Подключиться к приватному чату</button></a>
+</div>
+
+<!-- Форма выхода с CSRF-защитой -->
+<form action="{{ url_for('logout') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="logout-btn">Выход</button>
+</form>
+
+{% endblock %}
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Подключиться к приватному чату{% endblock %}
+
+{% block content %}
+<h1>Подключиться к приватному чату</h1>
+
+<form action="{{ url_for('join_private_chat') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label for="chat_id">Введите ID:</label>
+    <input type="text" name="chat_id" id="chat_id" pattern="[0-9]+" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit" id="joinBtn" disabled>Подключиться</button>
+</form>
+
+<a href="{{ url_for('account') }}"><button type="button">Назад</button></a>
+{% endblock %}
+
